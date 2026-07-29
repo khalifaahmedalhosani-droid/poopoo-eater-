@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>You are an idiot!</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      cursor: pointer; /* Vis at siden kan klikkes hvis autoplay er blokeret */
+    }
+
+    img {
+      border: 2px solid white;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Single GIF display -->
+  <img src="idiot.gif" alt="You are an idiot">
+
+  <!-- Single Audio File with native looping -->
+  <audio id="idiotSound" src="idiot.mp3" loop></audio>
+
+  <script>
+    const sound = document.getElementById("idiotSound");
+
+    // Prøv at afspille automatisk ved indlæsning
+    window.addEventListener("DOMContentLoaded", () => {
+      sound.play().catch(() => {
+        console.log("Autoplay blokeret af browseren. Venter på bruger-klik.");
+      });
+    });
+
+    // Start lyden ved første klik på siden ifald autoplay er blokeret
+    document.body.addEventListener("click", () => {
+      if (sound.paused) {
+        sound.play();
+      }
+    });
+  </script>
+</body>
+</html>
